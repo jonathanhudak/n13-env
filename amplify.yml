@@ -6,9 +6,7 @@ frontend:
         - yarn install
     build:
       commands:
-        - echo "NEXT_PUBLIC_FOO=$NEXT_PUBLIC_FOO" >> .env.production
-        - echo "NEXT_PUBLIC_BAR=$TWITCH_CLIENT_ID" >> .env.production
-        - echo "NEXT_PUBLIC_ZAZZ=$NEXT_PUBLIC_ZAZZ" >> .env.production
+        - env | grep -e NEXT_PUBLIC_ >> .env.production
         - yarn run build
   artifacts:
     baseDirectory: .next
