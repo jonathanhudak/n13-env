@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - yarn install
+    build:
+      commands:
+        - echo "NEXT_PUBLIC_FOO=$NEXT_PUBLIC_FOO" >> .env.production
+        - echo "NEXT_PUBLIC_BAR=$TWITCH_CLIENT_ID" >> .env.production
+        - echo "NEXT_PUBLIC_ZAZZ=$NEXT_PUBLIC_ZAZZ" >> .env.production
+        - yarn run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
